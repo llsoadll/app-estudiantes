@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
@@ -17,6 +18,11 @@ public class EstudianteController {
     // Constructor para inicializar la base de datos
     public EstudianteController() {
         baseDatos = new BaseDatosEstudiantes();
+    }
+
+    @GetMapping("/")
+    public String redirigirARaiz() {
+        return "redirect:/estudiantes/buscarFormulario";
     }
 
     // Ruta para mostrar el formulario de búsqueda en /estudiantes/buscarFormulario
