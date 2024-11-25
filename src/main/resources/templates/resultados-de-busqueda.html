@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados de Búsqueda</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .search-results-header {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .search-results-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 10px,
+              rgba(255, 255, 255, 0.05) 10px,
+              rgba(255, 255, 255, 0.05) 20px
+      );
+      animation: move-background 10s linear infinite;
+      opacity: 0.3;
+    }
+
+    @keyframes move-background {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .search-results-header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .search-results-header .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 30px;
+      flex-grow: 1;
+    }
+
+    .message {
+      text-align: center;
+      color: #f44336;
+      font-size: 1.2rem;
+    }
+
+    .student-list {
+      margin-top: 20px;
+    }
+
+    .student-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background-color: #f9f9f9;
+      transition: background-color 0.3s ease;
+    }
+
+    .student-card:hover {
+      background-color: #e9ecef;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      position: sticky;
+      bottom: 0;
+      background-color: white;
+      padding: 15px 0;
+      width: 100%;
+      border-top: 1px solid #ddd;
+    }
+
+    .footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="search-results-header">
+    <h1>Resultados de Búsqueda</h1>
+    <div class="subtitle">Detalle de estudiantes encontrados</div>
+  </div>
+
+  <div class="message" th:if="${mensaje}">
+    <p th:text="${mensaje}"></p>
+  </div>
+
+  <div class="student-list" th:if="${!#lists.isEmpty(estudiantes)}">
+    <div th:each="estudiante : ${estudiantes}" class="student-card">
+      <p><strong>Nombre:</strong> <span th:text="${estudiante.nombre}"></span></p>
+      <p><strong>Legajo:</strong> <span th:text="${estudiante.legajo}"></span></p>
+      <p><strong>Cuatrimestre:</strong> <span th:text="${estudiante.cuatrimestre}"></span></p>
+      <p><strong>Año:</strong> <span th:text="${estudiante.anio}"></span></p>
+      <p><strong>Condición:</strong> <span th:text="${estudiante.condicion}"></span></p>
+      <p><strong>Nota:</strong> <span th:text="${estudiante.nota}"></span></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="/estudiantes/buscarFormulario" class="btn btn-primary text-light">Volver al formulario de búsqueda</a>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

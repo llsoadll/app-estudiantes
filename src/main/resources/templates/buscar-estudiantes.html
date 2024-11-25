@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Estudiantes</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .search-header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.05) 10px,
+                    rgba(255, 255, 255, 0.05) 20px
+            );
+            animation: move-background 10s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes move-background {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .search-header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .search-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-image {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-image img {
+            width: 400px;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="bg-light">
+<div class="search-header">
+    <h1>Anatomía Funcional - Notas</h1>
+    <div class="subtitle">Historial de estudiantes</div>
+</div>
+
+<div class="container mt-5">
+    <form action="/estudiantes/buscar" method="get">
+        <div class="form-group">
+            <label for="texto">Nombre del estudiante:</label>
+            <input type="text" class="form-control" id="texto" name="texto" placeholder="Ingresa el nombre">
+        </div>
+
+
+        <div class="form-group">
+            <label for="legajo">Legajo del estudiante:</label>
+            <input type="text" class="form-control" id="legajo" name="legajo" placeholder="Ingresa el legajo">
+        </div>
+
+
+        <div class="form-group">
+            <label for="anio">Año:</label>
+            <select class="form-control" id="anio" name="anio">
+                <option value="Todos">Todos</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <!-- Agrega más años si es necesario -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cuatrimestre">Cuatrimestre:</label>
+            <select class="form-control" id="cuatrimestre" name="cuatrimestre">
+                <option value="Todos">Todos</option>
+                <option value="Primer">Primer</option>
+                <option value="Segundo">Segundo</option>
+            </select>
+
+
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary btn-block">Buscar</button>
+    </form>
+</div>
+
+<div class="footer-image">
+    <img src="/images/mi-imagen.png" alt="Estudiantes" title="Estudiantes">
+</div>
+</body>
+</html>
